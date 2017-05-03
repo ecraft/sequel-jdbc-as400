@@ -1,0 +1,76 @@
+PATH
+  remote: .
+  specs:
+    sequel-jdbc-as400 (0.1.0)
+      jdbc-jt400
+      sequel (~> 4.45)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (5.1.0)
+      activesupport (= 5.1.0)
+    activesupport (5.1.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
+    ast (2.3.0)
+    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.0.5-java)
+    diff-lcs (1.3)
+    i18n (0.8.1)
+    jdbc-jt400 (9.1.1)
+    mini_portile2 (2.1.0)
+    minitest (5.10.1)
+    nokogiri (1.7.1)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.1-java)
+    parser (2.4.0.0)
+      ast (~> 2.2)
+    powerpack (0.1.1)
+    rainbow (2.2.2)
+      rake
+    rake (12.0.0)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+    rubocop (0.48.1)
+      parser (>= 2.3.3.1, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-progressbar (1.8.1)
+    sequel (4.46.0)
+    thread_safe (0.3.6)
+    thread_safe (0.3.6-java)
+    tzinfo (1.2.3)
+      thread_safe (~> 0.1)
+    unicode-display_width (1.2.1)
+
+PLATFORMS
+  java
+  ruby
+
+DEPENDENCIES
+  activemodel
+  nokogiri
+  rake
+  rspec
+  rubocop
+  sequel-jdbc-as400!
+  tzinfo
+
+BUNDLED WITH
+   1.14.6
