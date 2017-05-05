@@ -11,4 +11,3 @@ matrix:
 before_install:
   - gem install bundler
 script: bundle exec rake
-gemfile: .travis.gemfile
