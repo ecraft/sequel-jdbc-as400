@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 1.9
   DisplayCopNames: true
 
 Lint/EndAlignment:
@@ -22,9 +22,20 @@ Style/Encoding:
   Enabled: false
 Style/FileName:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 Style/NumericPredicate:
   Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
+
+# Default in v0.48.1, but older versions are being used for older Ruby versions, so we set this explicitly here to have the same
+# settings on all Ruby versions.
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%I': '[]'
+    '%r': '{}'
+    '%w': '[]'
+    '%W': '[]'
