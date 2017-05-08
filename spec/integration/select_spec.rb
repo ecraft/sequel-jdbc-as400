@@ -1,3 +1,5 @@
+# rubocop:disable NumericLiterals
+
 describe 'a basic SELECT query', needs_live_db2_server: true do
   def sequel
     connection_string = ENV.fetch('CONNECTION_STRING') {
