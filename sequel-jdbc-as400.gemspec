@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.bindir = 'bin'
 
   s.add_runtime_dependency 'jdbc-jt400'
-  s.add_runtime_dependency 'sequel', '~> 4.45'
+  s.add_runtime_dependency 'sequel', '~> 5.0'
   s.add_development_dependency 'activemodel'
   s.add_development_dependency 'nokogiri'
   s.add_development_dependency 'rspec'
