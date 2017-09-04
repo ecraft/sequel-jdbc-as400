@@ -14,3 +14,12 @@ $ CONNECTION_STRING="jdbc:as400://server-name/;prompt=false;user=login;password=
 ```
 
 (replace the connection string with a real one, pointing at a AS400 DB2 server.)
+
+## Releasing a new gem version
+
+Bump version in version.rb manually, then run the following:
+
+```shell
+$ bundle exec git release v1.0.0
+$ bundle exec rake release
+```

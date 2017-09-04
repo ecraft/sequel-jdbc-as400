@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/ecraft/sequel-jdbc-as400'
   s.license = 'MIT'
   s.required_ruby_version = '>= 1.8.7'
-  s.files = %w[MIT-LICENSE CHANGELOG README.rdoc Rakefile] + Dir['doc/**/*.{rdoc,txt}'] + Dir['{spec,lib}/**/*.{rb,RB}']
+  s.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   s.require_path = 'lib'
   s.bindir = 'bin'
 
