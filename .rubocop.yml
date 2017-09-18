@@ -5,6 +5,10 @@ AllCops:
 Lint/EndAlignment:
   EnforcedStyleAlignWith: variable
 
+# Workaround for https://github.com/bbatsov/rubocop/issues/4740
+Lint/RescueWithoutErrorClass:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
