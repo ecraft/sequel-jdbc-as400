@@ -17,10 +17,11 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'jdbc-jt400', '~> 9.1'
   s.add_runtime_dependency 'sequel', '~> 5.0'
+
   s.add_development_dependency 'activemodel'
   s.add_development_dependency 'nokogiri'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'tzinfo'
-  s.add_development_dependency 'rake'
 end
