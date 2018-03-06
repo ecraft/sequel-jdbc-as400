@@ -1,4 +1,4 @@
-require File.expand_path('../lib/sequel/jdbc/as400/version', __FILE__)
+require File.expand_path('lib/sequel/jdbc/as400/version', __dir__)
 
 Gem::Specification.new do |s|
   s.name = 'sequel-jdbc-as400'
