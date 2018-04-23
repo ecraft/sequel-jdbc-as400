@@ -58,7 +58,6 @@ module Sequel
 
       # Dataset class for AS400 datasets accessed via JDBC.
       class Dataset < JDBC::Dataset
-
         WILDCARD = Sequel::LiteralString.new('*').freeze
         Sequel::Deprecation.deprecate_constant(self, :WILDCARD)
         FETCH_FIRST_ROW_ONLY = ' FETCH FIRST ROW ONLY'.freeze
@@ -69,11 +68,12 @@ module Sequel
         Sequel::Deprecation.deprecate_constant(self, :ROWS_ONLY)
 
         # Modify the sql to limit the number of rows returned
-        def select_limit_sql(sql)
-          if o = @opts[:offset]
-            sql << " OFFSET "
+        def select_limit_sql(sql) # rubocop:disable MethodLength
+          o = @opts[:offset]
+          if o
+            sql << ' OFFSET '
             literal_append(sql, o)
-            sql << " ROWS"
+            sql << ' ROWS'
           end
           l = @opts[:limit]
           return unless l
