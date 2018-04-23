@@ -4,7 +4,6 @@ require 'jdbc/jt400'
 Jdbc::JT400.load_driver
 
 Sequel.require 'adapters/jdbc/transactions'
-Sequel.require 'adapters/utils/emulate_offset_with_row_number'
 
 module Sequel
   module JDBC
@@ -59,8 +58,6 @@ module Sequel
 
       # Dataset class for AS400 datasets accessed via JDBC.
       class Dataset < JDBC::Dataset
-        include EmulateOffsetWithRowNumber
-
         WILDCARD = Sequel::LiteralString.new('*').freeze
         Sequel::Deprecation.deprecate_constant(self, :WILDCARD)
         FETCH_FIRST_ROW_ONLY = ' FETCH FIRST ROW ONLY'.freeze
@@ -71,7 +68,13 @@ module Sequel
         Sequel::Deprecation.deprecate_constant(self, :ROWS_ONLY)
 
         # Modify the sql to limit the number of rows returned
-        def select_limit_sql(sql)
+        def select_limit_sql(sql) # rubocop:disable MethodLength
+          o = @opts[:offset]
+          if o
+            sql << ' OFFSET '
+            literal_append(sql, o)
+            sql << ' ROWS'
+          end
           l = @opts[:limit]
           return unless l
 
