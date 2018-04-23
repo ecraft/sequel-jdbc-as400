@@ -59,7 +59,6 @@ module Sequel
 
       # Dataset class for AS400 datasets accessed via JDBC.
       class Dataset < JDBC::Dataset
-        include EmulateOffsetWithRowNumber
 
         WILDCARD = Sequel::LiteralString.new('*').freeze
         Sequel::Deprecation.deprecate_constant(self, :WILDCARD)
@@ -72,6 +71,11 @@ module Sequel
 
         # Modify the sql to limit the number of rows returned
         def select_limit_sql(sql)
+          if o = @opts[:offset]
+            sql << " OFFSET "
+            literal_append(sql, o)
+            sql << " ROWS"
+          end
           l = @opts[:limit]
           return unless l
 
