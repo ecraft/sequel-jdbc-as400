@@ -4,7 +4,6 @@ require 'jdbc/jt400'
 Jdbc::JT400.load_driver
 
 Sequel.require 'adapters/jdbc/transactions'
-Sequel.require 'adapters/utils/emulate_offset_with_row_number'
 
 module Sequel
   module JDBC
