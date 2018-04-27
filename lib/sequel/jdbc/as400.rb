@@ -1,17 +1,22 @@
 # frozen-string-literal: true
 
-require 'jdbc/jt400'
-Jdbc::JT400.load_driver
+if defined?(JRUBY_VERSION)
+  require 'jdbc/jt400'
 
-Sequel.require 'adapters/jdbc/transactions'
+  Jdbc::JT400.load_driver
+
+  Sequel.require 'adapters/jdbc/transactions'
+end
 
 module Sequel
   module JDBC
-    Sequel.synchronize do
-      DATABASE_SETUP[:as400] = proc do |db|
-        db.extend(Sequel::JDBC::AS400::DatabaseMethods)
-        db.dataset_class = Sequel::JDBC::AS400::Dataset
-        com.ibm.as400.access.AS400JDBCDriver
+    if defined?(JRUBY_VERSION)
+      Sequel.synchronize do
+        DATABASE_SETUP[:as400] = proc do |db|
+          db.extend(Sequel::JDBC::AS400::DatabaseMethods)
+          db.dataset_class = Sequel::JDBC::AS400::Dataset
+          com.ibm.as400.access.AS400JDBCDriver
+        end
       end
     end
 
@@ -19,7 +24,9 @@ module Sequel
     module AS400
       # Instance methods for AS400 Database objects accessed via JDBC.
       module DatabaseMethods
-        include Sequel::JDBC::Transactions
+        if defined?(JRUBY_VERSION)
+          include Sequel::JDBC::Transactions
+        end
 
         TRANSACTION_BEGIN = 'Transaction.begin'.freeze
         Sequel::Deprecation.deprecate_constant(self, :TRANSACTION_BEGIN)
@@ -57,7 +64,9 @@ module Sequel
       end
 
       # Dataset class for AS400 datasets accessed via JDBC.
-      class Dataset < JDBC::Dataset
+      super_class = defined?(JRUBY_VERSION) ? JDBC::Dataset : Sequel::Dataset
+      
+      class Dataset < super_class
         WILDCARD = Sequel::LiteralString.new('*').freeze
         Sequel::Deprecation.deprecate_constant(self, :WILDCARD)
         FETCH_FIRST_ROW_ONLY = ' FETCH FIRST ROW ONLY'.freeze
