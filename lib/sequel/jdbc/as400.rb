@@ -1,5 +1,8 @@
 # frozen-string-literal: true
 
+require 'sequel'
+require 'sequel/adapters/jdbc'
+
 require 'jdbc/jt400'
 Jdbc::JT400.load_driver
 
