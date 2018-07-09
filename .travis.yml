@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - jruby-9.1.15.0
+  - jruby-9.2
   - jruby-head
 matrix:
   allow_failures:
