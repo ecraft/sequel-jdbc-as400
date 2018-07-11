@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.author = 'Jeremy Evans and contributors'
   s.homepage = 'https://github.com/ecraft/sequel-jdbc-as400'
   s.license = 'MIT'
-  s.required_ruby_version = '>= 2.1' # rubocop:disable Gemspec/RequiredRubyVersion
+  s.required_ruby_version = '>= 2.2'
   s.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) } -
     %w[.travis.yml .rubocop.yml]
   s.require_path = 'lib'
