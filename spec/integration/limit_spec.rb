@@ -5,7 +5,7 @@ describe 'a limit query', needs_live_db2_server: true do
         primary_key :id
         String :name
       end
-      class ::Item < Sequel::Model(db)
+      class Item < Sequel::Model(db)
       end
     end
   end
