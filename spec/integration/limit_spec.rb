@@ -16,7 +16,7 @@ describe 'a limit query', needs_live_db2_server: true do
       Object.send(:remove_const, :Item)
     end
   end
-  
+
   def sequel
     connection_string = ENV.fetch('CONNECTION_STRING') {
       raise 'You must define the CONNECTION_STRING environment variable and point it to a valid DB2 for IBM i database'
@@ -30,12 +30,10 @@ describe 'a limit query', needs_live_db2_server: true do
 
   context 'when using a cached dataset' do
     it 'should return an array with the correct number of elements' do
-      sequel do |db|
-        # Sequel starts caching dataset query placeholder arguments on 3rd use
-        3.times { Items.create(name: 'N') }
-        some_items = Items.where(name: 'N')
-        3.times { expect(some_items.first(2).size).to eq(2) }
-      end
+      # Sequel starts caching dataset query placeholder arguments on 3rd use
+      3.times { Items.create(name: 'N') }
+      some_items = Items.where(name: 'N')
+      3.times { expect(some_items.first(2).size).to eq(2) }
     end
   end
 end
