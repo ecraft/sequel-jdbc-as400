@@ -31,8 +31,8 @@ describe 'a limit query', needs_live_db2_server: true do
   context 'when using a cached dataset' do
     it 'should return an array with the correct number of elements' do
       # Sequel starts caching dataset query placeholder arguments on 3rd use
-      3.times { Items.create(name: 'N') }
-      some_items = Items.where(name: 'N')
+      3.times { Item.create(name: 'N') }
+      some_items = Item.where(name: 'N')
       3.times { expect(some_items.first(2).size).to eq(2) }
     end
   end
