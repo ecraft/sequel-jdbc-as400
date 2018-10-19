@@ -71,23 +71,18 @@ module Sequel
         Sequel::Deprecation.deprecate_constant(self, :ROWS_ONLY)
 
         # Modify the sql to limit the number of rows returned
-        def select_limit_sql(sql) # rubocop:disable MethodLength
-          o = @opts[:offset]
-          if o
+        def select_limit_sql(sql)
+          if (o = @opts[:offset])
             sql << ' OFFSET '
             literal_append(sql, o)
             sql << ' ROWS'
           end
-          l = @opts[:limit]
-          return unless l
 
-          if l == 1
-            sql << ' FETCH FIRST ROW ONLY'
-          elsif l > 1
-            sql << ' FETCH FIRST '
-            literal_append(sql, l)
-            sql << ' ROWS ONLY'
-          end
+          return unless (l = @opts[:limit])
+
+          sql << ' FETCH FIRST '
+          literal_append(sql, l)
+          sql << ' ROWS ONLY'
         end
 
         def supports_window_functions?
